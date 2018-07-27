@@ -1,0 +1,8 @@
+.planningForm {
+  .planningFormButton {
+    background-color: aqua;
+    &:disabled {
+      background-color: gray;
+    }
+  }
+}

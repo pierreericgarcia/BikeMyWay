@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { HomeLayout } from "../../components/home-layout";
+import { Layout } from "../../components/layout";
 
 export class Planning extends Component {
   render() {
-    return <HomeLayout>Planning</HomeLayout>;
+    return <Layout>Planning</Layout>;
   }
 }

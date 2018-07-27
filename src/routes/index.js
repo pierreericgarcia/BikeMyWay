@@ -1,8 +1,14 @@
-import React, { Component } from "react";
-import { HomeLayout } from "../components/home-layout";
+import React, { Component, Fragment } from "react";
+import { Layout } from "../components/layout";
+import { PlanningForm } from "../components/planning-form";
 
 export class Home extends Component {
   render() {
-    return <HomeLayout>Hey</HomeLayout>;
+    return (
+      <Layout>
+        <h1>Riding has never been easier.</h1>
+        <PlanningForm />
+      </Layout>
+    );
   }
 }

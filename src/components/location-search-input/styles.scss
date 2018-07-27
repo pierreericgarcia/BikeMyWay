@@ -1,0 +1,23 @@
+.locationSearchInput {
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid grey;
+  position: relative;
+
+  & > * {
+    display: inline-block;
+  }
+
+  .locationSearchInputIcon {
+    padding: 0.5rem;
+    border-right: 1px solid grey;
+  }
+
+  .locationSearchInputCurrentPosition {
+    padding: 0.5rem 0.5rem 0.5rem 0;
+  }
+
+  .locationSearchInputField {
+    padding: 0.5rem;
+  }
+}
