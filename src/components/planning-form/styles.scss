@@ -1,4 +1,17 @@
 .planningForm {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 5px;
+  box-shadow: 0 16px 40px rgba($color: black, $alpha: 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  & > * {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
   .planningFormButton {
     background-color: aqua;
     &:disabled {

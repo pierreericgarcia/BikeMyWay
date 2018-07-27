@@ -1,9 +1,10 @@
 import "./styles.css";
 
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import { LocationSearchInput } from "../location-search-input";
 
-export class PlanningForm extends Component {
+class DumbPlanningForm extends Component {
   state = {
     departure: "",
     arrival: ""
@@ -19,11 +20,19 @@ export class PlanningForm extends Component {
     return false;
   };
 
+  startPlanning = () => {
+    const { departure, arrival } = this.state;
+    if (this.locationsAreValid()) {
+      this.props.history.push(`/planning/${departure}/${arrival}`);
+    }
+  };
+
   render() {
     const { departure, arrival } = this.state;
 
     return (
       <div className="planningForm">
+        <h4 className="planningFormTitle">Plan your trip</h4>
         <LocationSearchInput
           value={departure}
           onChange={value => this.setState({ departure: value })}
@@ -35,6 +44,7 @@ export class PlanningForm extends Component {
         />
         <button
           className="planningFormButton"
+          onClick={this.startPlanning}
           disabled={!this.locationsAreValid()}
         >
           Let's ride 🚲
@@ -43,3 +53,5 @@ export class PlanningForm extends Component {
     );
   }
 }
+
+export const PlanningForm = withRouter(DumbPlanningForm);
