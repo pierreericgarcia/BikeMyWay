@@ -6,14 +6,20 @@ import { LocationSearchInput } from "../location-search-input";
 
 class DumbPlanningForm extends Component {
   state = {
-    departure: "",
-    arrival: ""
+    departure: {
+      address: "",
+      geocode: null
+    },
+    arrival: {
+      address: "",
+      geocode: null
+    }
   };
 
   locationsAreValid = () => {
     const { departure, arrival } = this.state;
 
-    if (departure.length > 0 && arrival.length > 0) {
+    if (departure.geocode && arrival.geocode) {
       return true;
     }
 
@@ -23,7 +29,15 @@ class DumbPlanningForm extends Component {
   startPlanning = () => {
     const { departure, arrival } = this.state;
     if (this.locationsAreValid()) {
-      this.props.history.push(`/planning/${departure}/${arrival}`);
+      const stringifiedDeparture = `${departure.geocode.lat}_${
+        departure.geocode.lng
+      }`;
+      const stringifiedArrival = `${arrival.geocode.lat}_${
+        arrival.geocode.lng
+      }`;
+      this.props.history.push(
+        `/planning/${stringifiedDeparture}/${stringifiedArrival}`
+      );
     }
   };
 
@@ -34,11 +48,11 @@ class DumbPlanningForm extends Component {
       <div className="planningForm">
         <h4 className="planningFormTitle">Plan your trip</h4>
         <LocationSearchInput
-          value={departure}
+          value={departure.address}
           onChange={value => this.setState({ departure: value })}
         />
         <LocationSearchInput
-          value={arrival}
+          value={arrival.address}
           onChange={value => this.setState({ arrival: value })}
           planningStep="arrival"
         />

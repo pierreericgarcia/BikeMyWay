@@ -11,7 +11,7 @@ export class App extends Component {
           <Route exact path="/" component={Home} />
           <Route
             exact
-            path="/planning/:departure/:arrival"
+            path="/planning/:departureGeocode/:arrivalGeocode"
             component={Planning}
           />
           <Route render={() => <h3>404</h3>} />
