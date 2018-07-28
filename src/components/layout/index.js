@@ -8,13 +8,13 @@ export class Layout extends Component {
     const { children } = this.props;
 
     return (
-      <div className="Layout">
+      <div className="layout">
         <nav className="navBar">
           <Link className="navBarLink" to="/">
             BikeMyWay
           </Link>
         </nav>
-        <div className="LayoutContainer">{children}</div>
+        <div className="layoutContainer">{children}</div>
       </div>
     );
   }

@@ -45,7 +45,7 @@ class DumbPlanningForm extends Component {
     const { departure, arrival } = this.state;
 
     return (
-      <div className="planningForm">
+      <div className="planningForm card">
         <h4 className="planningFormTitle">Plan your trip</h4>
         <LocationSearchInput
           value={departure.address}

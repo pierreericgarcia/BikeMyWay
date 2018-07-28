@@ -7,3 +7,10 @@ body {
 h1 {
   color: white;
 }
+
+.card {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 5px;
+  box-shadow: 0 16px 40px rgba($color: black, $alpha: 0.1);
+}
