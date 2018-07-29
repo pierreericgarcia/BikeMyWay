@@ -1,3 +1,5 @@
+@import "variables.scss";
+
 .planningForm {
   display: flex;
   width: 40%;
@@ -7,7 +9,7 @@
 
   & > * {
     margin-top: 0;
-    margin-bottom: 0.5rem;
+    margin-bottom: $padding;
   }
 
   .planningFormTitle {
@@ -20,10 +22,10 @@
     border: none;
     font-weight: 600;
     font-size: 1rem;
-    border-radius: 5px;
-    padding: 0.5rem 1rem;
-    box-shadow: 0 16px 40px rgba($color: black, $alpha: 0.3);
-    background-color: #007ed9;
+    border-radius: $border-radius;
+    padding: $padding calc(#{$padding} * 2);
+    box-shadow: $box-shadow-position rgba($color: black, $alpha: 0.3);
+    background-color: $blue;
     transition: all 0.2s ease;
 
     &:disabled {

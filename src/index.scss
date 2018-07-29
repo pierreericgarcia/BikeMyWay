@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
+@import "variables.scss";
 
 body {
   margin: 0;
@@ -17,6 +18,6 @@ h1 {
 .card {
   background-color: white;
   padding: 2rem;
-  border-radius: 5px;
-  box-shadow: 0 16px 40px rgba($color: black, $alpha: 0.1);
+  border-radius: $border-radius;
+  box-shadow: $box-shadow-position rgba($color: black, $alpha: 0.1);
 }

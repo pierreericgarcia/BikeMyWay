@@ -1,26 +1,28 @@
+@import "variables.scss";
+
 .locationSearchInput {
   border: 1px solid #dbdbdb;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: white;
-  border-radius: 5px;
+  border-radius: $border-radius;
   position: relative;
   line-height: 18px;
   width: 100%;
   display: flex;
 
   .locationSearchInputIcon {
-    padding: 0.5rem;
+    padding: $padding;
   }
 
   .locationSearchInputCurrentPosition {
-    margin-right: 0.5rem;
+    margin-right: $padding;
     background-color: transparent;
     border: none;
     cursor: pointer;
   }
 
   .locationSearchInputField {
-    padding: 0.5rem;
+    padding: $padding;
     flex: 1;
 
     .locationSearchInputFieldDropdownContainer {
@@ -33,19 +35,19 @@
 
       .locationSearchInputFieldDropdown {
         cursor: pointer;
-        box-shadow: 0 16px 40px rgba($color: black, $alpha: 0.1);
+        box-shadow: $box-shadow-position rgba($color: black, $alpha: 0.1);
         z-index: 1;
-        top: calc(100% + 0.5rem + 1px);
+        top: calc(100% + $padding + 1px);
         background-color: white;
         position: absolute;
-        padding: 0.5rem;
+        padding: $padding;
 
         .locationSearchInputFieldDropdownSuggestion {
-          padding: 0.5rem;
+          padding: $padding;
 
           &.active {
             color: white;
-            background-color: #007ed9;
+            background-color: $blue;
           }
         }
       }
