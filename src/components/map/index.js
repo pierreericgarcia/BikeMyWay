@@ -6,8 +6,7 @@ import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
-  DirectionsRenderer,
-  Marker
+  DirectionsRenderer
 } from "react-google-maps";
 import axios from "axios";
 

@@ -23,6 +23,16 @@ class DumbPlanningCard extends Component {
 
     return (
       <div className="planningCard card">
+        <div className="planningCardLegend">
+          <div className="planningCardLegendItem">
+            <div className="planningCardLegendItemColor walking" />
+            <span>Walking</span>
+          </div>
+          <div className="planningCardLegendItem">
+            <div className="planningCardLegendItemColor bicycling" />
+            <span>Bicycling</span>
+          </div>
+        </div>
         <Map
           planning={{
             departure: { lat: departureLat, lng: departureLng },
