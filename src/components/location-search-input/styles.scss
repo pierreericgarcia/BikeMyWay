@@ -1,23 +1,54 @@
 .locationSearchInput {
+  border: 1px solid #dbdbdb;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: white;
   border-radius: 5px;
-  border: 1px solid grey;
   position: relative;
-
-  & > * {
-    display: inline-block;
-  }
+  line-height: 18px;
+  width: 100%;
+  display: flex;
 
   .locationSearchInputIcon {
     padding: 0.5rem;
-    border-right: 1px solid grey;
   }
 
   .locationSearchInputCurrentPosition {
-    padding: 0.5rem 0.5rem 0.5rem 0;
+    margin-right: 0.5rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
   }
 
   .locationSearchInputField {
     padding: 0.5rem;
+    flex: 1;
+
+    .locationSearchInputFieldDropdownContainer {
+      position: relative;
+
+      input {
+        width: 100%;
+        border: none;
+      }
+
+      .locationSearchInputFieldDropdown {
+        cursor: pointer;
+        box-shadow: 0 16px 40px rgba($color: black, $alpha: 0.1);
+        z-index: 1;
+        top: calc(100% + 0.5rem + 1px);
+        background-color: white;
+        position: absolute;
+        padding: 0.5rem;
+
+        .locationSearchInputFieldDropdownSuggestion {
+          padding: 0.5rem;
+
+          &.active {
+            color: white;
+            background-color: #007ed9;
+          }
+        }
+      }
+    }
   }
 }

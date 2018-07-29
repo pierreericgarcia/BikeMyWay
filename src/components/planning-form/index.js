@@ -46,7 +46,7 @@ class DumbPlanningForm extends Component {
 
     return (
       <div className="planningForm card">
-        <h4 className="planningFormTitle">Plan your trip</h4>
+        <h4 className="planningFormTitle">Plan your next trip 🚲</h4>
         <LocationSearchInput
           value={departure.address}
           onChange={value => this.setState({ departure: value })}
@@ -61,7 +61,7 @@ class DumbPlanningForm extends Component {
           onClick={this.startPlanning}
           disabled={!this.locationsAreValid()}
         >
-          Let's ride 🚲
+          Let's ride!
         </button>
       </div>
     );

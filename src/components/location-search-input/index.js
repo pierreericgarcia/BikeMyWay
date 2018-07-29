@@ -5,6 +5,10 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng
 } from "react-places-autocomplete";
+import ArrivalIcon from "./arrival.svg";
+import DepartureIcon from "./departure.svg";
+import CurrentLocationIcon from "./current_location.svg";
+import classnames from "classnames";
 
 export class LocationSearchInput extends Component {
   onChange = address => {
@@ -42,7 +46,11 @@ export class LocationSearchInput extends Component {
     return (
       <div className="locationSearchInput">
         <div className="locationSearchInputIcon">
-          {planningStep === "departure" ? "departure" : "arrival"}
+          {planningStep === "departure" ? (
+            <img width="15" src={DepartureIcon} />
+          ) : (
+            <img width="15" src={ArrivalIcon} />
+          )}
         </div>
         <div className="locationSearchInputField">
           <PlacesAutocomplete
@@ -56,35 +64,33 @@ export class LocationSearchInput extends Component {
               getSuggestionItemProps,
               loading
             }) => (
-              <div>
+              <div className="locationSearchInputFieldDropdownContainer">
                 <input
                   {...getInputProps({
-                    placeholder: `Choose your ${planningStep}`,
-                    className: "location-search-input"
+                    placeholder: `Choose your ${planningStep}`
                   })}
                 />
-                <div className="autocomplete-dropdown-container">
-                  {loading && <div>Loading...</div>}
-                  {suggestions.map(suggestion => {
-                    const className = suggestion.active
-                      ? "suggestion-item--active"
-                      : "suggestion-item";
-                    // inline style for demonstration purpose
-                    const style = suggestion.active
-                      ? { backgroundColor: "#fafafa", cursor: "pointer" }
-                      : { backgroundColor: "#ffffff", cursor: "pointer" };
-                    return (
-                      <div
-                        {...getSuggestionItemProps(suggestion, {
-                          className,
-                          style
-                        })}
-                      >
-                        <span>{suggestion.description}</span>
-                      </div>
-                    );
-                  })}
-                </div>
+                {suggestions.length > 0 ? (
+                  <div className="locationSearchInputFieldDropdown">
+                    {loading && <div>Loading...</div>}
+                    {suggestions.map(suggestion => {
+                      return (
+                        <div
+                          {...getSuggestionItemProps(suggestion, {
+                            className: classnames(
+                              "locationSearchInputFieldDropdownSuggestion",
+                              {
+                                active: suggestion.active
+                              }
+                            )
+                          })}
+                        >
+                          <span>{suggestion.description}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                ) : null}
               </div>
             )}
           </PlacesAutocomplete>
@@ -94,7 +100,7 @@ export class LocationSearchInput extends Component {
             onClick={this.getCurrentLocation}
             className="locationSearchInputCurrentPosition"
           >
-            >
+            <img width="15" src={CurrentLocationIcon} />
           </button>
         ) : null}
       </div>
