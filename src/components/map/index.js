@@ -1,14 +1,34 @@
 /* eslint-disable no-undef */
 
-import React from "react";
+import React, { Fragment } from "react";
 import { compose, withProps, lifecycle } from "recompose";
 import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
-  DirectionsRenderer
+  DirectionsRenderer,
+  Marker
 } from "react-google-maps";
 import axios from "axios";
+
+import ArrivalStep from "./arrival_step.png";
+import DepartureStep from "./departure_step.png";
+import StationStep from "./station_step.png";
+
+var ArrivalStepImg = {
+  url: ArrivalStep,
+  scaledSize: new google.maps.Size(30, 40)
+};
+
+var DepartureStepImg = {
+  url: DepartureStep,
+  scaledSize: new google.maps.Size(30, 40)
+};
+
+var StationStepImg = {
+  url: StationStep,
+  scaledSize: new google.maps.Size(30, 40)
+};
 
 export const Map = compose(
   withProps({
@@ -76,8 +96,7 @@ export const Map = compose(
 
           this.setState({
             nearestDepartureStation,
-            nearestArrivalStation,
-            stations: response.data
+            nearestArrivalStation
           });
 
           const DirectionsService = new google.maps.DirectionsService();
@@ -135,37 +154,78 @@ export const Map = compose(
         });
     }
   })
-)(props => (
-  <GoogleMap defaultZoom={12} defaultCenter={{ lat: 48.866667, lng: 2.333333 }}>
-    <DirectionsRenderer
-      defaultOptions={{
-        suppressBicyclingLayer: true,
-        polylineOptions: {
-          strokeColor: "green",
-          strokeOpacity: 0.5
-        }
-      }}
-      directions={props.departureWalkingDirections}
-    />
-    <DirectionsRenderer
-      defaultOptions={{
-        suppressBicyclingLayer: true,
-        polylineOptions: {
-          strokeColor: "blue",
-          strokeOpacity: 0.5
-        }
-      }}
-      directions={props.bicyclingDirections}
-    />
-    <DirectionsRenderer
-      defaultOptions={{
-        suppressBicyclingLayer: true,
-        polylineOptions: {
-          strokeColor: "green",
-          strokeOpacity: 0.5
-        }
-      }}
-      directions={props.arrivalWalkingDirections}
-    />
-  </GoogleMap>
-));
+)(props => {
+  return (
+    <GoogleMap
+      defaultZoom={12}
+      defaultCenter={{ lat: 48.866667, lng: 2.333333 }}
+    >
+      {props.planning ? (
+        <Fragment>
+          <Marker
+            position={{
+              lat: props.planning.departure.lat,
+              lng: props.planning.departure.lng
+            }}
+            icon={DepartureStepImg}
+          />
+          <Marker
+            position={{
+              lat: props.planning.arrival.lat,
+              lng: props.planning.arrival.lng
+            }}
+            icon={ArrivalStepImg}
+          />
+        </Fragment>
+      ) : null}
+
+      {props.nearestDepartureStation ? (
+        <Marker
+          icon={StationStepImg}
+          position={props.nearestDepartureStation.position}
+        />
+      ) : null}
+
+      {props.nearestArrivalStation ? (
+        <Marker
+          icon={StationStepImg}
+          position={props.nearestArrivalStation.position}
+        />
+      ) : null}
+
+      <DirectionsRenderer
+        defaultOptions={{
+          suppressMarkers: true,
+          suppressBicyclingLayer: true,
+          polylineOptions: {
+            strokeColor: "green",
+            strokeOpacity: 0.5
+          }
+        }}
+        directions={props.departureWalkingDirections}
+      />
+      <DirectionsRenderer
+        defaultOptions={{
+          suppressMarkers: true,
+          suppressBicyclingLayer: true,
+          polylineOptions: {
+            strokeColor: "blue",
+            strokeOpacity: 0.5
+          }
+        }}
+        directions={props.bicyclingDirections}
+      />
+      <DirectionsRenderer
+        defaultOptions={{
+          suppressMarkers: true,
+          suppressBicyclingLayer: true,
+          polylineOptions: {
+            strokeColor: "green",
+            strokeOpacity: 0.5
+          }
+        }}
+        directions={props.arrivalWalkingDirections}
+      />
+    </GoogleMap>
+  );
+});
